@@ -22,16 +22,20 @@ public class GeradorDeRelatorios {
 	public static final int FORMATO_NEGRITO = 0b0001;
 	public static final int FORMATO_ITALICO = 0b0010;
 
-	private Produto [] produtos;
+	// private Produto [] produtos;
+	private List<Produto> produtos;
 	private String algoritmo;
 	private String criterio;
 	private String filtro;
 	private String argFiltro;
 	private int format_flags;	
+	private AlgoritmoOrdenacao algoritmoOrdenacao;
+	private Comparator<Produto> criterioOrdenacao;
+	private Filtro filtro;
 
-	public GeradorDeRelatorios(Produto [] produtos, String algoritmo, String criterio, String filtro, String argFiltro, int format_flags){
-
-		this.produtos = new Produto[produtos.length];
+	public GeradorDeRelatorios(List<Produto> produtos, String algoritmo, String criterio, String filtro, String argFiltro, int format_flags){
+		this.produtos = produtos;
+		/* this.produtos = new Produto[produtos.length];
 		
 		for(int i = 0; i < produtos.length; i++){
 		
@@ -42,7 +46,7 @@ public class GeradorDeRelatorios {
 		this.criterio = criterio;
 		this.format_flags = format_flags;
 		this.filtro = filtro;
-		this.argFiltro = argFiltro;
+		this.argFiltro = argFiltro; */
 	}
 
 	private int particiona(int ini, int fim){
@@ -167,7 +171,7 @@ public class GeradorDeRelatorios {
 	
 	public void debug(){
 
-		System.out.println("Gerando relatório para array contendo " + produtos.length + " produto(s)");
+		System.out.println("Gerando relatório para array contendo " + produtos.size() + " produto(s)");
 		System.out.println("parametro filtro = '" + argFiltro + "'"); 
 	}
 
@@ -176,7 +180,7 @@ public class GeradorDeRelatorios {
 
 		debug();
 
-		ordena(0, produtos.length - 1);
+		ordena(0, produtos.size() - 1);
 
 		PrintWriter out = new PrintWriter(arquivoSaida);
 
@@ -188,9 +192,9 @@ public class GeradorDeRelatorios {
 
 		int count = 0;
 
-		for(int i = 0; i < produtos.length; i++){
+		for(int i = 0; i < produtos.size(); i++){
 
-			Produto p = produtos[i];
+			Produto p = produtos(i);
 			boolean selecionado = false;
 
 			if(filtro.equals(FILTRO_TODOS)){
