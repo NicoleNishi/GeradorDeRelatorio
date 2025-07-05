@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class GeradorDeRelatorio { // Futuramente será chamado de GeradorDeRelatórios
+public class GeradorDeRelatorios { // Futuramente será chamado de GeradorDeRelatórios
     private List<Produto> produtos;
     private AlgoritmoOrd algoritmoOrd;
     private Comparator<Produto> criterioOrdenacao;
     private Filtro filtro;
 
-    public GeradorDeRelatorio(List<Produto> produtos) {
+    public GeradorDeRelatorios(List<Produto> produtos) {
         this.produtos = produtos;
     }
 
