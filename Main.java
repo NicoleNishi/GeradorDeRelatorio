@@ -1,24 +1,26 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Produto> produtos = new ArrayList<>();
-        produtos.add(new ProdutoNegrito(new ProdutoPadrao(1, "Caneta", "Papelaria", 2, 10.0)));
-        produtos.add(new ProdutoItalico(new ProdutoPadrao(2, "Lápis", "Papelaria", 1, 20.0)));
-        produtos.add(new ProdutoCor(new ProdutoPadrao(3, "Borracha", "Papelaria", 3, 5.0), "red"));
-
-        GeradorDeRelatorios gerador = new GeradorDeRelatorios(produtos);
-
-        gerador.setAlgoritmoOrdenacao(new OrdInsertionSort()); // ou new QuickSort()
-        gerador.setCriterioOrdenacao(new CrescComparadorDescricao());
-        gerador.setFiltro(new FiltroTodos());
-
         try {
+            // Carrega os produtos de um arquivo CSV
+            List<Produto> produtos = LeitorDeCSV.carregarProdutos("produtos.csv");
+
+            // Cria o gerador com os produtos carregados
+            GeradorDeRelatorios gerador = new GeradorDeRelatorios(produtos);
+
+            // Define estratégia de ordenação e filtro
+            gerador.setAlgoritmoOrdenacao(new OrdQuickSort()); // ou InsertionSort()
+            gerador.setCriterioOrdenacao(new CrescComparadorPreco()); // ou qualquer outro
+            gerador.setFiltro(new FiltroTodos());
+
+            // Gera o relatório HTML
             gerador.gerarRelatorio("relatorio.html");
-            System.out.println("Relatório gerado com sucesso.");
+
+            System.out.println("Relatório gerado com sucesso em 'relatorio.html'.");
         } catch (Exception e) {
-            System.err.println("Erro ao gerar relatório: " + e.getMessage());
+            System.err.println("Erro ao executar o programa: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

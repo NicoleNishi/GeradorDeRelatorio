@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class GeradorDeRelatorios { // Futuramente será chamado de GeradorDeRelatórios
+public class GeradorDeRelatorios { 
     private List<Produto> produtos;
     private OrdAlgoritmo ordAlgoritmo;
     private Comparator<Produto> criterioOrdenacao;
