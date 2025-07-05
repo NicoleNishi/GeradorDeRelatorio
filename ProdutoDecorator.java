@@ -24,4 +24,19 @@ public abstract class ProdutoDecorator implements Produto {
     public int getQtdEstoque() {
         return componente.getQtdEstoque();
     }
+
+    @Override
+    public int getId() {
+        return componente.getId();
+    }
+
+    @Override
+    public void setQtdEstoque(int qtd) {
+        componente.setQtdEstoque(qtd);
+    }
+
+    @Override
+    public void setPreco(double preco) {
+        componente.setPreco(preco);
+    }
 }
