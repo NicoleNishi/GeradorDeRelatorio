@@ -1,0 +1,8 @@
+import java.util.Comparator;
+
+public class DecrComparadorEstoque implements Comparator<Produto> {
+    @Override
+    public int compare(Produto prod1, Produto prod2) {
+        return Integer.compare(prod2.getQtdEstoque(), prod1.getQtdEstoque());
+    }
+}
