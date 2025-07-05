@@ -1,7 +1,7 @@
 import java.util.Comparator;
 import java.util.List;
 
-public class QuickSort implements AlgoritmoOrd {
+public class OrdQuickSort implements OrdAlgoritmo {
     @Override
     public void ordenar(List<Produto> produtos, Comparator<Produto> criterio) {
         quickSort(produtos, criterio, 0, produtos.size() - 1);
