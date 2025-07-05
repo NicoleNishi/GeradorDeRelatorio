@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GeradorDeRelatorios { // Futuramente será chamado de GeradorDeRelatórios
     private List<Produto> produtos;
-    private AlgoritmoOrd algoritmoOrd;
+    private OrdAlgoritmo ordAlgoritmo;
     private Comparator<Produto> criterioOrdenacao;
     private Filtro filtro;
 
@@ -14,8 +14,8 @@ public class GeradorDeRelatorios { // Futuramente será chamado de GeradorDeRela
         this.produtos = produtos;
     }
 
-    public void setAlgoritmoOrdenacao(AlgoritmoOrd algoritmo) {
-        this.algoritmoOrd = algoritmo;
+    public void setAlgoritmoOrdenacao(OrdAlgoritmo algoritmo) {
+        this.ordAlgoritmo = algoritmo;
     }
 
     public void setCriterioOrdenacao(Comparator<Produto> criterio) {
@@ -28,8 +28,8 @@ public class GeradorDeRelatorios { // Futuramente será chamado de GeradorDeRela
 
     public void gerarRelatorio(String nomeArquivo) throws IOException {
         // Ordenação
-        if (algoritmoOrd != null && criterioOrdenacao != null) {
-            algoritmoOrd.ordenar(produtos, criterioOrdenacao);
+        if (ordAlgoritmo != null && criterioOrdenacao != null) {
+            ordAlgoritmo.ordenar(produtos, criterioOrdenacao);
         }
 
         // Filtragem
