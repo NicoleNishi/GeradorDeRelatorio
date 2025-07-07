@@ -12,7 +12,7 @@ public class Main {
             // Define estratégia de ordenação e filtro
             gerador.setAlgoritmoOrdenacao(new OrdQuickSort()); // ou InsertionSort()
             gerador.setCriterioOrdenacao(new CrescComparadorPreco()); // ou qualquer outro
-            gerador.setFiltro(new FiltroTodos());
+            gerador.setFiltro(new FiltroTodos()); // ou qualquer outro
 
             // Gera o relatório HTML
             gerador.gerarRelatorio("relatorio.html");
